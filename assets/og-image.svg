@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Fashion Hub product editorial">
+  <rect width="1200" height="630" fill="#06070b"/>
+  <rect x="60" y="60" width="1080" height="510" rx="36" fill="url(#grad)"/>
+  <circle cx="380" cy="330" r="150" fill="#ffffff" opacity="0.18"/>
+  <rect x="520" y="210" width="230" height="240" rx="28" fill="#ffffff" opacity="0.95"/>
+  <path d="M565 220c65 0 104 57 104 125 0 57-34 102-83 118-48-20-84-64-84-123 0-44 19-95 63-120z" fill="#d1b0ff"/>
+  <text x="120" y="210" font-family="Segoe UI, Arial, sans-serif" font-size="54" font-weight="700" fill="#ffffff">Fashion Hub</text>
+  <text x="120" y="276" font-family="Segoe UI, Arial, sans-serif" font-size="40" fill="#f5f7fb">Premium fashion essentials</text>
+  <text x="120" y="332" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#dce3f0">Outerwear • Bags • Accessories • Footwear</text>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8fd6ff"/>
+      <stop offset="100%" stop-color="#d1b0ff"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Discover premium fashion essentials at Fashion Hub, featuring curated outerwear, bags, accessories, and footwear with modern style and exclusive deals." />
+    <meta name="robots" content="index,follow" />
+    <meta name="author" content="Fashion Hub" />
+    <meta name="theme-color" content="#06070b" />
+    <title>Fashion Hub | Premium Fashion Essentials</title>
+    <link rel="canonical" href="https://fashionhub.com/" />
+    <link rel="preload" href="css/style.min.css" as="style" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="Fashion Hub | Premium Fashion Essentials" />
+    <meta property="og:description" content="Discover premium fashion essentials at Fashion Hub, featuring curated outerwear, bags, accessories, and footwear with modern style and exclusive deals." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fashionhub.com/" />
+    <meta property="og:image" content="https://fashionhub.com/assets/og-image.svg" />
+    <meta property="og:image:secure_url" content="https://fashionhub.com/assets/og-image.svg" />
+    <meta property="og:image:alt" content="Fashion Hub premium fashion essentials editorial collage" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="pinterest-rich-pin" content="true" />
+    <meta name="pinterest" content="nopin" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Fashion Hub | Premium Fashion Essentials" />
+    <meta name="twitter:description" content="Discover premium fashion essentials at Fashion Hub, featuring curated outerwear, bags, accessories, and footwear with modern style and exclusive deals." />
+    <meta name="twitter:image" content="https://fashionhub.com/assets/og-image.svg" />
+    <meta name="twitter:image:alt" content="Fashion Hub premium fashion essentials editorial collage" />
+    <link rel="stylesheet" href="css/style.min.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Fashion Hub",
+        "url": "https://fashionhub.com/",
+        "description": "Premium fashion essentials for modern living.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://fashionhub.com/index.html?search={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="page-bg"></div>
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="loader">
+        <span></span><span></span><span></span>
+      </div>
+      <p>Preparing your curated edit</p>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#">Fashion Hub</a>
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Open mobile menu">☰</button>
+      <nav class="top-nav" id="top-nav" aria-label="Primary navigation">
+        <a href="#featured">Featured</a>
+        <a href="#best-sellers">Best Sellers</a>
+        <a href="#deals">Deals</a>
+        <a href="#newsletter">Newsletter</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-pill" id="theme-toggle" type="button" aria-label="Toggle dark mode">☾</button>
+        <button class="icon-pill" id="wishlist-trigger" type="button">♡ <span id="wishlist-count">0</span></button>
+      </div>
+    </header>
+
+    <main id="main-content" class="page-shell">
+      <section class="hero glass-card">
+        <div class="hero-content">
+          <p class="eyebrow">New season • curated drop</p>
+          <h1>Elevated essentials for a quietly luxurious life.</h1>
+          <p class="hero-copy">
+            Discover sculptural layers, refined accessories, and timeless staples designed to move seamlessly from day to night.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#featured">Shop collection</a>
+            <a class="btn btn-secondary" href="#deals">View offers</a>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://www.pinterest.com/pin/create/button/?url=https://fashionhub.com/&media=https://fashionhub.com/assets/og-image.svg&description=Curated%20fashion%20essentials%20from%20Fashion%20Hub" target="_blank" rel="noopener noreferrer">📌 Save to Pinterest</a>
+            <a class="btn btn-secondary" href="https://www.pinterest.com/pin/create/button/?url=https://fashionhub.com/&media=https://fashionhub.com/assets/og-image.svg&description=The%20latest%20curated%20fashion%20edit%20from%20Fashion%20Hub" target="_blank" rel="noopener noreferrer">Share on Pinterest</a>
+          </div>
+          <div class="hero-stats" aria-label="Brand highlights">
+            <div>
+              <strong>24h</strong>
+              <span>express dispatch</span>
+            </div>
+            <div>
+              <strong>4.9/5</strong>
+              <span>member rating</span>
+            </div>
+            <div>
+              <strong>12k+</strong>
+              <span>happy clients</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-badge">Spring Edit 2026</div>
+          <img src="assets/hero-illustration.svg" alt="Curated fashion essentials" loading="lazy" decoding="async" />
+          <div class="hero-stack">
+            <div class="mini-card">Minimal outerwear</div>
+            <div class="mini-card accent">Signature bags</div>
+            <div class="mini-card">Soft tailoring</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="search-panel glass-card" id="search">
+        <div class="search-copy">
+          <p class="eyebrow">Find your fit</p>
+          <h2>Search our signature pieces.</h2>
+        </div>
+        <form class="search-form" id="search-form">
+          <input id="search-input" type="search" placeholder="Search coats, bags, accessories..." />
+          <button type="submit">Search</button>
+        </form>
+      </section>
+
+      <section class="categories-section" aria-labelledby="categories-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Browse by mood</p>
+            <h2 id="categories-title">Categories</h2>
+          </div>
+        </div>
+        <div class="chip-row" id="category-filters">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="outerwear">Outerwear</button>
+          <button class="chip" data-filter="bags">Bags</button>
+          <button class="chip" data-filter="accessories">Accessories</button>
+          <button class="chip" data-filter="footwear">Footwear</button>
+        </div>
+      </section>
+
+      <section class="products-section" id="featured">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Crafted for modern living</p>
+            <h2>Featured Products</h2>
+          </div>
+          <div class="product-toolbar">
+            <label class="sort-control" for="sort-select">
+              <span>Sort</span>
+              <select id="sort-select">
+                <option value="featured">Featured</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="name-asc">Name: A to Z</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="products-grid" id="featured-products"></div>
+      </section>
+
+      <section class="commerce-grid">
+        <article class="glass-card offer-card">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Limited time</p>
+              <h2>Today's Deals</h2>
+            </div>
+          </div>
+          <div class="offer-list">
+            <div class="offer-item"><span class="tag-pill">-30%</span><strong>Tailored outerwear</strong></div>
+            <div class="offer-item"><span class="tag-pill">Free ship</span><strong>Signature accessories</strong></div>
+            <div class="offer-item"><span class="tag-pill">Bundle</span><strong>Upgrade your weekend edit</strong></div>
+          </div>
+        </article>
+
+        <article class="glass-card offer-card">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Fast moving</p>
+              <h2>Flash Deals</h2>
+            </div>
+          </div>
+          <div class="offer-list">
+            <div class="offer-item"><span class="tag-pill">2h left</span><strong>Soft leather carryall</strong></div>
+            <div class="offer-item"><span class="tag-pill">12 left</span><strong>Monochrome essentials</strong></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="showcase-grid">
+        <article class="glass-card spotlight-card">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Editor’s note</p>
+              <h2>Editor’s Picks</h2>
+            </div>
+          </div>
+          <div class="mini-product-list" id="editor-picks-list"></div>
+        </article>
+
+        <article class="glass-card spotlight-card">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Fresh arrivals</p>
+              <h2>Recently Added</h2>
+            </div>
+          </div>
+          <div class="mini-product-list" id="recently-added-list"></div>
+        </article>
+      </section>
+
+      <section class="categories-section" aria-labelledby="featured-categories-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Shop by mood</p>
+            <h2 id="featured-categories-title">Featured Categories</h2>
+          </div>
+        </div>
+        <div class="category-grid">
+          <div class="category-card glass-card"><h3>Minimal Layers</h3><p>Lightweight staples and polished outerwear.</p></div>
+          <div class="category-card glass-card"><h3>Statement Bags</h3><p>Architectural silhouettes for everyday carrying.</p></div>
+          <div class="category-card glass-card"><h3>Refined Accessories</h3><p>Elevated essentials that complete every look.</p></div>
+          <div class="category-card glass-card"><h3>Soft Footwear</h3><p>Comfort-first frames with premium finish.</p></div>
+        </div>
+      </section>
+
+      <section class="overview-grid">
+        <article class="glass-card spotlight-card" id="wishlist">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Loved daily</p>
+              <h2>Wishlist</h2>
+            </div>
+          </div>
+          <div class="mini-product-list" id="wishlist-list"></div>
+        </article>
+
+        <article class="glass-card spotlight-card">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Freshly noticed</p>
+              <h2>Recently Viewed</h2>
+            </div>
+          </div>
+          <div class="mini-product-list" id="recent-list"></div>
+        </article>
+      </section>
+
+      <section class="showcase-grid">
+        <article class="glass-card spotlight-card" id="best-sellers">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Loved daily</p>
+              <h2>Best Sellers</h2>
+            </div>
+          </div>
+          <div class="mini-product-list" id="best-sellers-list"></div>
+        </article>
+
+        <article class="glass-card spotlight-card">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">Freshly noticed</p>
+              <h2>Trending</h2>
+            </div>
+          </div>
+          <div class="mini-product-list" id="trending-list"></div>
+        </article>
+      </section>
+
+      <section class="deals-section" id="deals">
+        <div class="glass-card deal-card">
+          <div>
+            <p class="eyebrow">Member exclusive</p>
+            <h2>Save 30% on curated essentials.</h2>
+            <p class="deal-copy">Ends in <span id="countdown">05d 12h 30m</span>.</p>
+          </div>
+          <a class="btn btn-primary" href="#newsletter">Claim the offer</a>
+        </div>
+      </section>
+
+      <section class="newsletter-section glass-card" id="newsletter">
+        <div>
+          <p class="eyebrow">Stay in the loop</p>
+          <h2>Join our newsletter for first access to every drop.</h2>
+          <p class="newsletter-copy">Receive style notes, limited offers, and early access to new collections.</p>
+        </div>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="Email address" required />
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="form-message" id="form-message" aria-live="polite"></p>
+      </section>
+
+      <section class="faq-section glass-card" id="faq">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Helpful answers</p>
+            <h2>FAQ</h2>
+          </div>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Do you offer international shipping?</summary>
+            <p>Yes, we deliver globally with premium tracked service.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I return a piece if it does not fit?</summary>
+            <p>Absolutely. You can request a return within 14 days of delivery.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Are your products authentic?</summary>
+            <p>Every item is sourced and verified for quality and authenticity.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="policy-grid" aria-label="Store policies">
+        <article class="policy-card glass-card" id="affiliate-disclosure">
+          <h3>Affiliate Disclosure</h3>
+          <p>We may earn a commission from qualifying purchases made through select links.</p>
+        </article>
+        <article class="policy-card glass-card" id="privacy-policy">
+          <h3>Privacy Policy</h3>
+          <p>Your data is protected and used only to improve your shopping experience.</p>
+        </article>
+        <article class="policy-card glass-card" id="terms">
+          <h3>Terms</h3>
+          <p>By shopping with us, you agree to our service and shipping terms.</p>
+        </article>
+        <article class="policy-card glass-card" id="contact">
+          <h3>Contact</h3>
+          <p>Email hello@fashionhub.com for styling support or order assistance.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-column">
+        <h3>Fashion Hub</h3>
+        <p>Premium essentials designed to feel effortless, polished, and enduring.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Shop</h4>
+        <a href="#featured">Featured</a>
+        <a href="#best-sellers">Bestsellers</a>
+        <a href="#deals">Offers</a>
+      </div>
+      <div class="footer-column">
+        <h4>Support</h4>
+        <a href="#newsletter">Newsletter</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-column">
+        <h4>Info</h4>
+        <a href="#affiliate-disclosure">Affiliate Disclosure</a>
+        <a href="#privacy-policy">Privacy Policy</a>
+        <a href="#terms">Terms</a>
+      </div>
+    </footer>
+
+    <div class="modal" id="quick-view-modal" aria-hidden="true">
+      <div class="modal-content glass-card">
+        <button class="modal-close" id="modal-close" type="button" aria-label="Close quick view">×</button>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <script type="module" src="js/app.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Lumen Trench",
+    "price": 220,
+    "priceLabel": "$220",
+    "category": "outerwear",
+    "tag": "Featured",
+    "accent": "#79c7ff",
+    "description": "Weather-ready with a softened silhouette."
+  },
+  {
+    "id": 2,
+    "name": "Aurelia Tote",
+    "price": 185,
+    "priceLabel": "$185",
+    "category": "bags",
+    "tag": "New",
+    "accent": "#c4a0ff",
+    "description": "Structured carrying comfort in matte leather."
+  },
+  {
+    "id": 3,
+    "name": "Halo Chain",
+    "price": 95,
+    "priceLabel": "$95",
+    "category": "accessories",
+    "tag": "Trending",
+    "accent": "#ffd4a0",
+    "description": "A polished staple for everyday layering."
+  },
+  {
+    "id": 4,
+    "name": "Velora Loafer",
+    "price": 160,
+    "priceLabel": "$160",
+    "category": "footwear",
+    "tag": "Best Seller",
+    "accent": "#8ed6bf",
+    "description": "Effortless movement with sculptural detailing."
+  },
+  {
+    "id": 5,
+    "name": "Contour Overshirt",
+    "price": 140,
+    "priceLabel": "$140",
+    "category": "outerwear",
+    "tag": "Best Seller",
+    "accent": "#f3a6d5",
+    "description": "Lightweight layering with premium drape."
+  },
+  {
+    "id": 6,
+    "name": "Monarch Crossbody",
+    "price": 125,
+    "priceLabel": "$125",
+    "category": "bags",
+    "tag": "Trending",
+    "accent": "#ff9f7a",
+    "description": "Compact form with an elevated finish."
+  },
+  {
+    "id": 7,
+    "name": "Sculpt Glasses",
+    "price": 78,
+    "priceLabel": "$78",
+    "category": "accessories",
+    "tag": "Featured",
+    "accent": "#9fd6ff",
+    "description": "Subtle curves for refined everyday wear."
+  },
+  {
+    "id": 8,
+    "name": "Noir Runner",
+    "price": 148,
+    "priceLabel": "$148",
+    "category": "footwear",
+    "tag": "Trending",
+    "accent": "#7a8cff",
+    "description": "A fluid silhouette with all-day ease."
+  }
+]
