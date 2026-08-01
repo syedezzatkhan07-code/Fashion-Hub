@@ -387,6 +387,24 @@
       </div>
     </div>
 
+    <script>
+      (function () {
+        const overlay = document.getElementById('loading-overlay');
+        const hideOverlay = () => {
+          if (!overlay) return;
+          overlay.classList.add('hidden');
+          document.documentElement.classList.add('app-ready');
+        };
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+          window.setTimeout(hideOverlay, 700);
+        } else {
+          window.addEventListener('DOMContentLoaded', () => window.setTimeout(hideOverlay, 700), { once: true });
+        }
+
+        window.addEventListener('load', hideOverlay, { once: true });
+      })();
+    </script>
     <script type="module" src="js/app.js"></script>
   </body>
 </html>
