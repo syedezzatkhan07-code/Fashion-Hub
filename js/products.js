@@ -4,19 +4,20 @@ function getApiBaseUrl() {
   return window.FASHION_HUB_API_URL || 'http://127.0.0.1:3001';
 }
 
-export async function loadProducts() {
-  if (cachedProducts) {
+export async function loadProducts(keyword = 'fashion essentials', category = 'accessories') {
+  if (cachedProducts?.keyword === keyword && cachedProducts?.category === category && cachedProducts.length) {
     return cachedProducts;
   }
 
   try {
-    const response = await fetch(`${getApiBaseUrl()}/api/products?keyword=fashion%20essentials&category=accessories`, { cache: 'no-store' });
+    const response = await fetch(`${getApiBaseUrl()}/api/products?keyword=${encodeURIComponent(keyword)}&category=${encodeURIComponent(category)}`, { cache: 'no-store' });
     if (!response.ok) {
       throw new Error('Products could not be loaded');
     }
 
-    cachedProducts = await response.json();
-    return cachedProducts;
+    const products = await response.json();
+    cachedProducts = Object.assign(products, { keyword, category });
+    return products;
   } catch (error) {
     console.error(error);
     return [];

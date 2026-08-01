@@ -10,7 +10,11 @@ const state = {
   sortBy: 'featured',
   wishlist: [],
   recent: [],
-  isDark: true
+  isDark: true,
+  currentRole: 'user',
+  searchKeyword: 'fashion essentials',
+  searchCategory: 'accessories',
+  isAdminAuthenticated: false
 };
 
 const featuredContainer = document.getElementById('featured-products');
@@ -36,6 +40,22 @@ const modal = document.getElementById('quick-view-modal');
 const modalBody = document.getElementById('modal-body');
 const modalClose = document.getElementById('modal-close');
 const loadingOverlay = document.getElementById('loading-overlay');
+const userPanelTab = document.getElementById('user-panel-tab');
+const adminPanelTab = document.getElementById('admin-panel-tab');
+const userPanel = document.getElementById('user-panel');
+const adminPanel = document.getElementById('admin-panel');
+const panelWishlistCount = document.getElementById('panel-wishlist-count');
+const panelRecentCount = document.getElementById('panel-recent-count');
+const panelProductCount = document.getElementById('panel-product-count');
+const panelCurrentKeyword = document.getElementById('panel-current-keyword');
+const adminForm = document.getElementById('admin-form');
+const adminKeywordInput = document.getElementById('admin-keyword');
+const adminCategorySelect = document.getElementById('admin-category');
+const adminLoginForm = document.getElementById('admin-login-form');
+const adminPassphraseInput = document.getElementById('admin-passphrase');
+const adminLoginMessage = document.getElementById('admin-login-message');
+const adminControls = document.getElementById('admin-controls');
+const adminAuthSection = document.getElementById('admin-auth-section');
 
 let products = [];
 
@@ -65,6 +85,49 @@ function renderLists() {
   wishlistContainer.innerHTML = wishlistItems.length ? wishlistItems.slice(0, 3).map(renderMiniItem).join('') : renderEmptyState('Your saved pieces will appear here.');
   recentContainer.innerHTML = recentItems.length ? recentItems.slice(0, 3).map(renderMiniItem).join('') : renderEmptyState('Browse a product to see it here.');
   wishlistCount.textContent = wishlistItems.length;
+  updatePanelUI();
+}
+
+function updatePanelUI() {
+  if (panelWishlistCount) {
+    panelWishlistCount.textContent = `${state.wishlist.length} saved`;
+  }
+  if (panelRecentCount) {
+    panelRecentCount.textContent = `${state.recent.length} viewed`;
+  }
+  if (panelProductCount) {
+    panelProductCount.textContent = `${products.length}`;
+  }
+  if (panelCurrentKeyword) {
+    panelCurrentKeyword.textContent = state.searchKeyword;
+  }
+}
+
+function setRole(role) {
+  state.currentRole = role;
+
+  if (userPanelTab && adminPanelTab) {
+    userPanelTab.classList.toggle('active', role === 'user');
+    adminPanelTab.classList.toggle('active', role === 'admin');
+    userPanelTab.setAttribute('aria-selected', String(role === 'user'));
+    adminPanelTab.setAttribute('aria-selected', String(role === 'admin'));
+  }
+
+  if (userPanel && adminPanel) {
+    userPanel.classList.toggle('hidden', role !== 'user');
+    adminPanel.classList.toggle('hidden', role !== 'admin');
+  }
+
+  if (role === 'admin' && state.isAdminAuthenticated) {
+    adminAuthSection?.classList.add('hidden');
+    adminControls?.classList.remove('hidden');
+  } else if (role === 'admin') {
+    adminAuthSection?.classList.remove('hidden');
+    adminControls?.classList.add('hidden');
+  } else {
+    adminAuthSection?.classList.add('hidden');
+    adminControls?.classList.add('hidden');
+  }
 }
 
 function toggleWishlistItem(id) {
@@ -139,6 +202,37 @@ function attachEvents() {
     }
   });
 
+  userPanelTab?.addEventListener('click', () => setRole('user'));
+  adminPanelTab?.addEventListener('click', () => setRole('admin'));
+
+  adminLoginForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const passphrase = adminPassphraseInput?.value.trim() || '';
+    const expectedPassphrase = window.FASHION_HUB_ADMIN_PASSPHRASE?.trim() || 'fashionhub123';
+    if (passphrase.toLowerCase() === expectedPassphrase.toLowerCase()) {
+      state.isAdminAuthenticated = true;
+      adminLoginMessage.textContent = 'Admin unlocked. You can now load products.';
+      adminAuthSection?.classList.add('hidden');
+      adminControls?.classList.remove('hidden');
+      setRole('admin');
+    } else {
+      adminLoginMessage.textContent = 'Incorrect passphrase. Try again.';
+    }
+  });
+
+  adminForm?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!state.isAdminAuthenticated) {
+      return;
+    }
+    const keyword = adminKeywordInput?.value.trim() || 'fashion essentials';
+    const category = adminCategorySelect?.value || 'accessories';
+    state.searchKeyword = keyword;
+    state.searchCategory = category;
+    products = await loadProducts(state.searchKeyword, state.searchCategory);
+    renderLists();
+  });
+
   themeToggle.addEventListener('click', toggleTheme);
   wishlistTrigger.addEventListener('click', () => {
     document.getElementById('best-sellers').scrollIntoView({ behavior: 'smooth' });
@@ -181,8 +275,9 @@ function updateCountdown() {
 async function init() {
   initState();
   attachEvents();
-  products = await loadProducts();
+  products = await loadProducts(state.searchKeyword, state.searchCategory);
   renderLists();
+  setRole(state.currentRole);
   updateCountdown();
   setInterval(updateCountdown, 60000);
   setTimeout(() => {

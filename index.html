@@ -27,7 +27,7 @@
     <meta name="twitter:description" content="Discover premium fashion essentials at Fashion Hub, featuring curated outerwear, bags, accessories, and footwear with modern style and exclusive deals." />
     <meta name="twitter:image" content="https://fashionhub.com/assets/og-image.svg" />
     <meta name="twitter:image:alt" content="Fashion Hub premium fashion essentials editorial collage" />
-    <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -107,6 +107,81 @@
             <div class="mini-card">Minimal outerwear</div>
             <div class="mini-card accent">Signature bags</div>
             <div class="mini-card">Soft tailoring</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="role-panel glass-card" id="role-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Dashboard</p>
+            <h2>Admin and user control</h2>
+          </div>
+          <div class="panel-tabs" role="tablist" aria-label="Role panels">
+            <button class="panel-tab active" id="user-panel-tab" role="tab" aria-selected="true" aria-controls="user-panel">User Panel</button>
+            <button class="panel-tab" id="admin-panel-tab" role="tab" aria-selected="false" aria-controls="admin-panel">Admin Panel</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="panel-content" id="user-panel">
+            <div class="panel-summary">
+              <div>
+                <strong>Wishlist</strong>
+                <span id="panel-wishlist-count">0 saved</span>
+              </div>
+              <div>
+                <strong>Recently viewed</strong>
+                <span id="panel-recent-count">0 viewed</span>
+              </div>
+            </div>
+            <div class="panel-section">
+              <h3>Quick start</h3>
+              <p>Use the product cards below to save favorites, open quick view, or browse the curated collection.</p>
+            </div>
+          </div>
+
+          <div class="panel-content hidden" id="admin-panel">
+            <div class="panel-summary">
+              <div>
+                <strong>Products loaded</strong>
+                <span id="panel-product-count">0</span>
+              </div>
+              <div>
+                <strong>Search keyword</strong>
+                <span id="panel-current-keyword">fashion essentials</span>
+              </div>
+            </div>
+
+            <div class="admin-auth" id="admin-auth-section">
+              <p>Enter the admin passphrase to unlock product controls.</p>
+              <form class="admin-login-form" id="admin-login-form">
+                <label>
+                  Passphrase
+                  <input id="admin-passphrase" type="password" placeholder="Enter admin passphrase" />
+                </label>
+                <button class="btn btn-secondary" type="submit">Unlock Admin</button>
+                <p class="form-message" id="admin-login-message" aria-live="polite"></p>
+              </form>
+            </div>
+
+            <div id="admin-controls" class="hidden">
+              <form class="admin-form" id="admin-form">
+                <label>
+                  Amazon search keyword
+                  <input id="admin-keyword" type="text" value="fashion essentials" />
+                </label>
+                <label>
+                  Category
+                  <select id="admin-category">
+                    <option value="accessories">Accessories</option>
+                    <option value="bags">Bags</option>
+                    <option value="outerwear">Outerwear</option>
+                    <option value="footwear">Footwear</option>
+                  </select>
+                </label>
+                <button class="btn btn-primary" type="submit">Load Amazon products</button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
@@ -368,6 +443,6 @@
       </div>
     </div>
 
-    <script type="module" src="js/app.min.js"></script>
+    <script type="module" src="js/app.js"></script>
   </body>
 </html>
