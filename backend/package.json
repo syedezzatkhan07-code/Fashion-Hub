@@ -8,6 +8,7 @@
     "test": "node --test"
   },
   "dependencies": {
+    "aws4": "^1.12.0",
     "cors": "^2.8.0",
     "dotenv": "^16.4.1",
     "express": "^4.19.0"
