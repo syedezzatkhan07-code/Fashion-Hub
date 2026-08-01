@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import aws4 from 'aws4';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { createHash, randomBytes, randomUUID, scryptSync, timingSafeEqual } from 'crypto';
 
 dotenv.config();
@@ -501,8 +501,12 @@ app.get(ADMIN_PORTAL_PATH, (req, res) => {
   res.sendFile(path.join(projectRoot, 'admin.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Fashion Hub backend listening on port ${PORT}`);
-});
+const isMainModule = process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url;
 
-export { buildAmazonSearchBody, normalizeAmazonProduct, getVisibleProducts };
+if (isMainModule) {
+  app.listen(PORT, () => {
+    console.log(`Fashion Hub backend listening on port ${PORT}`);
+  });
+}
+
+export { app, buildAmazonSearchBody, normalizeAmazonProduct, getVisibleProducts };
