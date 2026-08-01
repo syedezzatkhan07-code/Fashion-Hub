@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#05070b" />
+    <title>Hidden Admin Panel | Fashion Hub</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #04060b;
+        --panel: rgba(255,255,255,0.09);
+        --panel-strong: rgba(255,255,255,0.13);
+        --border: rgba(255,255,255,0.16);
+        --text: #f7f8fb;
+        --muted: #aeb7c8;
+        --accent: #8fd6ff;
+        --accent-2: #d1b0ff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", Roboto, sans-serif;
+        background: radial-gradient(circle at top left, rgba(143,214,255,0.18), transparent 28%), linear-gradient(135deg, #03050a, #0d1120 64%);
+        color: var(--text);
+        min-height: 100vh;
+      }
+      .shell { width: min(1320px, calc(100% - 2rem)); margin: 0 auto; padding: 1.2rem 0 2rem; }
+      .glass {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-radius: 24px;
+        box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+      }
+      .topbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.2rem; margin-bottom: 1rem; }
+      .pill { border-radius: 999px; padding: 0.5rem 0.8rem; background: rgba(255,255,255,0.1); color: var(--muted); font-size: 0.82rem; }
+      .grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1rem; }
+      .panel { padding: 1.2rem; }
+      h1, h2, h3, p { margin: 0; }
+      .muted { color: var(--muted); }
+      .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+      .metric { padding: 0.9rem; border-radius: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); }
+      .metric strong { display: block; font-size: 1.1rem; margin-bottom: 0.25rem; }
+      .stack { display: grid; gap: 0.8rem; }
+      form { display: grid; gap: 0.8rem; }
+      label { display: grid; gap: 0.4rem; font-size: 0.92rem; color: var(--muted); }
+      input, select, textarea, button { font: inherit; }
+      input, select, textarea { width: 100%; padding: 0.8rem 0.9rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.08); color: var(--text); }
+      textarea { min-height: 90px; resize: vertical; }
+      .row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+      .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 0.6rem; }
+      button { border: none; border-radius: 999px; padding: 0.75rem 1rem; cursor: pointer; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #031018; font-weight: 700; }
+      button.secondary { background: rgba(255,255,255,0.1); color: var(--text); border: 1px solid rgba(255,255,255,0.16); }
+      .list { display: grid; gap: 0.75rem; margin-top: 1rem; }
+      .item { padding: 0.9rem; border-radius: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); }
+      .item-header { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.45rem; }
+      .small { font-size: 0.82rem; color: var(--muted); }
+      .hidden { display: none !important; }
+      .login-card { max-width: 420px; margin: 4rem auto; padding: 1.4rem; }
+      .login-card form { gap: 1rem; }
+      @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .metrics { grid-template-columns: 1fr; } .row { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="glass topbar">
+        <div>
+          <p class="pill">Hidden Admin Panel</p>
+          <h1>Amazon Products Manager</h1>
+          <p class="muted">A Pinterest-inspired workspace for curated luxury product publishing.</p>
+        </div>
+        <div class="pill" id="auth-status">Loading session…</div>
+      </div>
+
+      <div class="glass panel" id="login-shell">
+        <div class="login-card">
+          <h2>Secure access</h2>
+          <p class="muted">Enter your admin credentials to continue.</p>
+          <form id="login-form">
+            <label>
+              Username
+              <input id="login-username" name="username" autocomplete="username" required />
+            </label>
+            <label>
+              Password
+              <input id="login-password" name="password" type="password" autocomplete="current-password" required />
+            </label>
+            <button type="submit">Unlock Panel</button>
+            <p class="small" id="login-message"></p>
+          </form>
+        </div>
+      </div>
+
+      <div id="dashboard-shell" class="hidden">
+        <div class="grid">
+          <section class="glass panel">
+            <h2>Product Editor</h2>
+            <p class="muted">Create a polished Pinterest-style product pin with affiliate-ready publishing controls.</p>
+            <form id="product-form">
+              <input id="product-id" type="hidden" />
+              <div class="row">
+                <label>Image Upload<input id="image-input" type="file" accept="image/*" /></label>
+                <label>Video Upload<input id="video-input" type="file" accept="video/*" /></label>
+              </div>
+              <div class="row">
+                <label>Product Title<input id="title" required /></label>
+                <label>Category<select id="category"><option value="accessories">Accessories</option><option value="bags">Bags</option><option value="outerwear">Outerwear</option><option value="footwear">Footwear</option></select></label>
+              </div>
+              <label>Short Description<textarea id="description"></textarea></label>
+              <div class="row">
+                <label>Tags<input id="tags" placeholder="luxury, editor-pick" /></label>
+                <label>Amazon Affiliate Link<input id="amazonUrl" placeholder="https://amzn.to/..." /></label>
+              </div>
+              <div class="row">
+                <label>Price<input id="price" type="number" step="0.01" /></label>
+                <label>Sale Badge<input id="saleBadge" placeholder="Limited / New / Sale" /></label>
+              </div>
+              <div class="row">
+                <label>Featured Product<select id="featured"><option value="true">Yes</option><option value="false">No</option></select></label>
+                <label>Status<select id="status"><option value="published">Publish</option><option value="draft">Draft</option></select></label>
+              </div>
+              <label>Schedule Publish<input id="publishAt" type="datetime-local" /></label>
+              <label>Pinterest SEO Title<input id="seoTitle" /></label>
+              <label>Pinterest Description<textarea id="pinterestDescription"></textarea></label>
+              <label>Alt Text<input id="altText" /></label>
+              <div class="actions">
+                <button type="submit" id="save-button">Publish Product</button>
+                <button type="button" class="secondary" id="cancel-button">Cancel</button>
+                <button type="button" class="secondary" id="logout-button">Logout</button>
+              </div>
+              <p class="small" id="form-message"></p>
+            </form>
+          </section>
+
+          <section class="glass panel">
+            <h2>Dashboard Analytics</h2>
+            <p class="muted">Live metrics for the high-end product catalog.</p>
+            <div class="metrics" id="metrics-grid"></div>
+            <div class="stack" style="margin-top:1rem;">
+              <div class="row">
+                <label>Search Products<input id="admin-search" placeholder="Search title or tag" /></label>
+                <label>Filter Category<select id="admin-category-filter"><option value="all">All</option><option value="accessories">Accessories</option><option value="bags">Bags</option><option value="outerwear">Outerwear</option><option value="footwear">Footwear</option></select></label>
+              </div>
+              <div class="row">
+                <label>Sort<select id="sort-select"><option value="newest">Newest</option><option value="oldest">Oldest</option><option value="featured">Featured</option></select></label>
+              </div>
+              <div class="list" id="product-list"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script>
+      const loginShell = document.getElementById('login-shell');
+      const dashboardShell = document.getElementById('dashboard-shell');
+      const authStatus = document.getElementById('auth-status');
+      const loginForm = document.getElementById('login-form');
+      const loginMessage = document.getElementById('login-message');
+      const productForm = document.getElementById('product-form');
+      const formMessage = document.getElementById('form-message');
+      const productList = document.getElementById('product-list');
+      const metricsGrid = document.getElementById('metrics-grid');
+      const saveButton = document.getElementById('save-button');
+      const cancelButton = document.getElementById('cancel-button');
+      const logoutButton = document.getElementById('logout-button');
+      const adminSearch = document.getElementById('admin-search');
+      const adminCategoryFilter = document.getElementById('admin-category-filter');
+      const sortSelect = document.getElementById('sort-select');
+      const hiddenId = document.getElementById('product-id');
+      let currentProducts = [];
+      let editingId = null;
+      let csrfToken = '';
+      let pendingImage = '';
+      let pendingVideo = '';
+
+      function resetForm() {
+        productForm.reset();
+        document.getElementById('featured').value = 'false';
+        document.getElementById('status').value = 'draft';
+        document.getElementById('category').value = 'accessories';
+        hiddenId.value = '';
+        editingId = null;
+        saveButton.textContent = 'Publish Product';
+      }
+
+      async function fetchJson(url, options = {}) {
+        const headers = {
+          'Content-Type': 'application/json',
+          ...(options.headers || {})
+        };
+        if (csrfToken) headers['x-csrf-token'] = csrfToken;
+        const response = await fetch(url, { ...options, headers });
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || 'Request failed');
+        }
+        return response.json().catch(() => null);
+      }
+
+      async function loadCsrfToken() {
+        const response = await fetch('/api/admin/csrf-token');
+        if (!response.ok) return;
+        const data = await response.json();
+        csrfToken = data.token;
+      }
+
+      async function checkSession() {
+        try {
+          const data = await fetchJson('/api/admin/session');
+          if (data?.authenticated) {
+            loginShell.classList.add('hidden');
+            dashboardShell.classList.remove('hidden');
+            authStatus.textContent = 'Authenticated';
+            await loadCsrfToken();
+            await loadDashboard();
+          } else {
+            loginShell.classList.remove('hidden');
+            dashboardShell.classList.add('hidden');
+            authStatus.textContent = 'Not signed in';
+          }
+        } catch (error) {
+          loginShell.classList.remove('hidden');
+          dashboardShell.classList.add('hidden');
+          authStatus.textContent = 'Session unavailable';
+        }
+      }
+
+      async function loadDashboard() {
+        const [products, metrics] = await Promise.all([
+          fetchJson('/api/admin/products'),
+          fetchJson('/api/admin/metrics')
+        ]);
+        currentProducts = products || [];
+        renderMetrics(metrics || {});
+        renderProducts();
+      }
+
+      function renderMetrics(metrics) {
+        const cards = [
+          ['Total Products', metrics.totalProducts || 0],
+          ['Published Products', metrics.publishedProducts || 0],
+          ['Drafts', metrics.drafts || 0],
+          ['Featured Products', metrics.featuredProducts || 0],
+          ['Total Clicks', metrics.totalClicks || 0],
+          ['Amazon Link Clicks', metrics.amazonLinkClicks || 0]
+        ];
+        metricsGrid.innerHTML = cards.map(([label, value]) => `<div class="metric"><strong>${value}</strong><span class="small">${label}</span></div>`).join('');
+      }
+
+      function getFilteredProducts() {
+        const term = adminSearch.value.trim().toLowerCase();
+        let products = [...currentProducts];
+        if (term) {
+          products = products.filter((product) => `${product.title} ${product.description} ${product.tags || ''}`.toLowerCase().includes(term));
+        }
+        if (adminCategoryFilter.value !== 'all') {
+          products = products.filter((product) => product.category === adminCategoryFilter.value);
+        }
+        if (sortSelect.value === 'featured') {
+          products.sort((a, b) => Number(b.featured) - Number(a.featured));
+        } else if (sortSelect.value === 'oldest') {
+          products.sort((a, b) => new Date(a.createdAt || 0) - new Date(b.createdAt || 0));
+        } else {
+          products.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+        }
+        return products;
+      }
+
+      function renderProducts() {
+        const products = getFilteredProducts();
+        if (!products.length) {
+          productList.innerHTML = '<div class="item"><p class="muted">No products yet. Publish your first luxury pin.</p></div>';
+          return;
+        }
+        productList.innerHTML = products.map((product) => `
+          <div class="item">
+            <div class="item-header">
+              <div>
+                <strong>${product.title || product.name}</strong>
+                <div class="small">${product.category || 'accessories'} • ${product.status || 'draft'}</div>
+              </div>
+              <div class="actions">
+                <button type="button" class="secondary" data-action="edit" data-id="${product.id}">Edit</button>
+                <button type="button" class="secondary" data-action="duplicate" data-id="${product.id}">Duplicate</button>
+                <button type="button" class="secondary" data-action="delete" data-id="${product.id}">Delete</button>
+              </div>
+            </div>
+            <p class="small">${product.description || 'No description yet.'}</p>
+            <div class="actions">
+              <span class="pill">${product.featured ? 'Featured' : 'Standard'}</span>
+              <span class="pill">${product.saleBadge || 'No badge'}</span>
+              <span class="pill">${product.publishedAt ? 'Scheduled' : 'Instant'}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      async function saveProduct(event) {
+        event.preventDefault();
+        const payload = {
+          id: hiddenId.value || undefined,
+          title: document.getElementById('title').value,
+          description: document.getElementById('description').value,
+          category: document.getElementById('category').value,
+          tags: document.getElementById('tags').value.split(',').map((item) => item.trim()).filter(Boolean),
+          amazonUrl: document.getElementById('amazonUrl').value,
+          price: Number(document.getElementById('price').value || 0),
+          saleBadge: document.getElementById('saleBadge').value,
+          featured: document.getElementById('featured').value === 'true',
+          seoTitle: document.getElementById('seoTitle').value,
+          pinterestDescription: document.getElementById('pinterestDescription').value,
+          altText: document.getElementById('altText').value,
+          status: document.getElementById('status').value,
+          publishAt: document.getElementById('publishAt').value || null,
+          image: pendingImage,
+          video: pendingVideo
+        };
+
+        try {
+          const url = editingId ? `/api/admin/products/${editingId}` : '/api/admin/products';
+          const method = editingId ? 'PUT' : 'POST';
+          await fetchJson(url, { method, body: JSON.stringify(payload) });
+          formMessage.textContent = editingId ? 'Product updated.' : 'Product published.';
+          resetForm();
+          await loadDashboard();
+        } catch (error) {
+          formMessage.textContent = error.message;
+        }
+      }
+
+      async function editProduct(id) {
+        const item = currentProducts.find((product) => String(product.id) === String(id));
+        if (!item) return;
+        editingId = item.id;
+        hiddenId.value = item.id;
+        document.getElementById('title').value = item.title || item.name || '';
+        document.getElementById('description').value = item.description || '';
+        document.getElementById('category').value = item.category || 'accessories';
+        document.getElementById('tags').value = (item.tags || []).join(', ');
+        document.getElementById('amazonUrl').value = item.amazonUrl || '';
+        document.getElementById('price').value = item.price || '';
+        document.getElementById('saleBadge').value = item.saleBadge || '';
+        document.getElementById('featured').value = item.featured ? 'true' : 'false';
+        document.getElementById('seoTitle').value = item.seoTitle || '';
+        document.getElementById('pinterestDescription').value = item.pinterestDescription || '';
+        document.getElementById('altText').value = item.altText || '';
+        document.getElementById('status').value = item.status || 'draft';
+        document.getElementById('publishAt').value = item.publishAt ? item.publishAt.slice(0, 16) : '';
+        saveButton.textContent = 'Save Changes';
+        formMessage.textContent = 'Editing product';
+      }
+
+      async function duplicateProduct(id) {
+        try {
+          await fetchJson(`/api/admin/products/${id}/duplicate`, { method: 'POST' });
+          await loadDashboard();
+        } catch (error) {
+          formMessage.textContent = error.message;
+        }
+      }
+
+      async function deleteProduct(id) {
+        try {
+          await fetchJson(`/api/admin/products/${id}`, { method: 'DELETE' });
+          await loadDashboard();
+        } catch (error) {
+          formMessage.textContent = error.message;
+        }
+      }
+
+      async function login(event) {
+        event.preventDefault();
+        const payload = {
+          username: document.getElementById('login-username').value,
+          password: document.getElementById('login-password').value
+        };
+        try {
+          const data = await fetchJson('/api/admin/login', { method: 'POST', body: JSON.stringify(payload) });
+          if (data?.ok) {
+            loginMessage.textContent = 'Welcome back.';
+            await checkSession();
+          }
+        } catch (error) {
+          loginMessage.textContent = error.message;
+        }
+      }
+
+      async function logout() {
+        try {
+          await fetchJson('/api/admin/logout', { method: 'POST' });
+          resetForm();
+          await checkSession();
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      async function handleMediaInput(type, target) {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          target.value = reader.result;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      loginForm.addEventListener('submit', login);
+      productForm.addEventListener('submit', saveProduct);
+      cancelButton.addEventListener('click', resetForm);
+      logoutButton.addEventListener('click', logout);
+      adminSearch.addEventListener('input', renderProducts);
+      adminCategoryFilter.addEventListener('change', renderProducts);
+      sortSelect.addEventListener('change', renderProducts);
+      productList.addEventListener('click', async (event) => {
+        const button = event.target.closest('button');
+        if (!button) return;
+        const { action, id } = button.dataset;
+        if (action === 'edit') return editProduct(id);
+        if (action === 'duplicate') return duplicateProduct(id);
+        if (action === 'delete') return deleteProduct(id);
+      });
+
+      async function readFileAsDataUrl(file) {
+        if (!file) return '';
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result || '');
+          reader.onerror = () => reject(new Error('Unable to read file'));
+          reader.readAsDataURL(file);
+        });
+      }
+
+      document.getElementById('image-input').addEventListener('change', async (event) => {
+        pendingImage = await readFileAsDataUrl(event.target.files?.[0]);
+      });
+      document.getElementById('video-input').addEventListener('change', async (event) => {
+        pendingVideo = await readFileAsDataUrl(event.target.files?.[0]);
+      });
+
+      document.addEventListener('contextmenu', (event) => {
+        if (dashboardShell.classList.contains('hidden')) return;
+        event.preventDefault();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (!dashboardShell.classList.contains('hidden') && (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'i') || (event.ctrlKey && event.key.toLowerCase() === 's'))) {
+          event.preventDefault();
+        }
+      });
+
+      checkSession();
+    </script>
+  </body>
+</html>

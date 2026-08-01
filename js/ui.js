@@ -1,11 +1,11 @@
-export function renderProductCard(product, isSaved) {
+export function renderProductCard(product) {
   const imageMarkup = product.image ? `<img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy" decoding="async" />` : '';
 
   return `
     <article class="product-card">
-      <div class="product-visual" style="background: linear-gradient(135deg, ${product.accent}, #ffffff22);">
+      <div class="product-visual" style="background: linear-gradient(135deg, ${product.accent || '#8fd6ff'}, #ffffff22);">
         ${imageMarkup}
-        <span class="product-tag">${product.tag}</span>
+        <span class="product-tag">${product.tag || 'Premium'}</span>
       </div>
       <div class="product-meta">
         <h3>${product.name}</h3>
@@ -13,7 +13,7 @@ export function renderProductCard(product, isSaved) {
         <div class="product-footer">
           <span class="price">${product.priceLabel}</span>
           <div class="card-actions">
-            <button class="icon-btn ${isSaved ? 'active' : ''}" data-action="wishlist" data-id="${product.id}" type="button" aria-label="Add ${product.name} to wishlist">♡</button>
+            <a class="btn btn-secondary" href="${product.amazonUrl || '#'}" target="_blank" rel="noopener noreferrer">View Amazon</a>
             <button class="icon-btn" data-action="quick-view" data-id="${product.id}" type="button" aria-label="Quick view ${product.name}">⌕</button>
             <button class="icon-btn" data-action="details" data-id="${product.id}" type="button" aria-label="View details for ${product.name}">↗</button>
           </div>

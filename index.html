@@ -64,7 +64,6 @@
       </nav>
       <div class="header-actions">
         <button class="icon-pill" id="theme-toggle" type="button" aria-label="Toggle dark mode">☾</button>
-        <button class="icon-pill" id="wishlist-trigger" type="button">♡ <span id="wishlist-count">0</span></button>
       </div>
     </header>
 
@@ -111,77 +110,22 @@
         </div>
       </section>
 
-      <section class="role-panel glass-card" id="role-panel">
-        <div class="panel-header">
-          <div>
-            <p class="eyebrow">Dashboard</p>
-            <h2>Admin and user control</h2>
-          </div>
-          <div class="panel-tabs" role="tablist" aria-label="Role panels">
-            <button class="panel-tab active" id="user-panel-tab" role="tab" aria-selected="true" aria-controls="user-panel">User Panel</button>
-            <button class="panel-tab" id="admin-panel-tab" role="tab" aria-selected="false" aria-controls="admin-panel">Admin Panel</button>
+      <section class="glass-card hero" id="intro">
+        <div class="hero-content">
+          <p class="eyebrow">Private curator • public storefront</p>
+          <h1>A serene luxury catalog with a hidden editorial workspace.</h1>
+          <p class="hero-copy">Every published product appears instantly across the homepage, featured collections, category pages, and search results. The admin workspace stays private and secure.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#featured">Browse collection</a>
+            <a class="btn btn-secondary" href="/secret-admin-portal-8472">Access admin</a>
           </div>
         </div>
-        <div class="panel-body">
-          <div class="panel-content" id="user-panel">
-            <div class="panel-summary">
-              <div>
-                <strong>Wishlist</strong>
-                <span id="panel-wishlist-count">0 saved</span>
-              </div>
-              <div>
-                <strong>Recently viewed</strong>
-                <span id="panel-recent-count">0 viewed</span>
-              </div>
-            </div>
-            <div class="panel-section">
-              <h3>Quick start</h3>
-              <p>Use the product cards below to save favorites, open quick view, or browse the curated collection.</p>
-            </div>
-          </div>
-
-          <div class="panel-content hidden" id="admin-panel">
-            <div class="panel-summary">
-              <div>
-                <strong>Products loaded</strong>
-                <span id="panel-product-count">0</span>
-              </div>
-              <div>
-                <strong>Search keyword</strong>
-                <span id="panel-current-keyword">fashion essentials</span>
-              </div>
-            </div>
-
-            <div class="admin-auth" id="admin-auth-section">
-              <p>Enter the admin passphrase to unlock product controls.</p>
-              <form class="admin-login-form" id="admin-login-form">
-                <label>
-                  Passphrase
-                  <input id="admin-passphrase" type="password" placeholder="Enter admin passphrase" />
-                </label>
-                <button class="btn btn-secondary" type="submit">Unlock Admin</button>
-                <p class="form-message" id="admin-login-message" aria-live="polite"></p>
-              </form>
-            </div>
-
-            <div id="admin-controls" class="hidden">
-              <form class="admin-form" id="admin-form">
-                <label>
-                  Amazon search keyword
-                  <input id="admin-keyword" type="text" value="fashion essentials" />
-                </label>
-                <label>
-                  Category
-                  <select id="admin-category">
-                    <option value="accessories">Accessories</option>
-                    <option value="bags">Bags</option>
-                    <option value="outerwear">Outerwear</option>
-                    <option value="footwear">Footwear</option>
-                  </select>
-                </label>
-                <button class="btn btn-primary" type="submit">Load Amazon products</button>
-              </form>
-            </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-badge">Quiet luxury</div>
+          <img src="assets/hero-illustration.svg" alt="Luxury fashion essentials" loading="lazy" decoding="async" />
+          <div class="hero-stack">
+            <div class="mini-card">Exclusive accessories</div>
+            <div class="mini-card accent">Premium editorial picks</div>
           </div>
         </div>
       </section>
@@ -301,24 +245,24 @@
       </section>
 
       <section class="overview-grid">
-        <article class="glass-card spotlight-card" id="wishlist">
+        <article class="glass-card spotlight-card">
           <div class="section-heading compact">
             <div>
-              <p class="eyebrow">Loved daily</p>
-              <h2>Wishlist</h2>
+              <p class="eyebrow">Editorial curation</p>
+              <h2>Featured Picks</h2>
             </div>
           </div>
-          <div class="mini-product-list" id="wishlist-list"></div>
+          <div class="mini-product-list" id="featured-picks-list"></div>
         </article>
 
         <article class="glass-card spotlight-card">
           <div class="section-heading compact">
             <div>
-              <p class="eyebrow">Freshly noticed</p>
-              <h2>Recently Viewed</h2>
+              <p class="eyebrow">Newly published</p>
+              <h2>Recently Added</h2>
             </div>
           </div>
-          <div class="mini-product-list" id="recent-list"></div>
+          <div class="mini-product-list" id="recently-added-list"></div>
         </article>
       </section>
 

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildAmazonSearchBody, normalizeAmazonProduct } from '../server.js';
+import { buildAmazonSearchBody, normalizeAmazonProduct, getVisibleProducts } from '../server.js';
 
 test('buildAmazonSearchBody includes keyword and partner metadata', () => {
   const body = buildAmazonSearchBody('fashion essentials');
@@ -23,4 +23,13 @@ test('normalizeAmazonProduct converts Amazon item shape to storefront format', (
   assert.equal(product.price, 220);
   assert.equal(product.image, 'https://example.com/image.jpg');
   assert.equal(product.category, 'outerwear');
+});
+
+test('getVisibleProducts returns only published products for the storefront', () => {
+  const products = [
+    { id: 1, title: 'Published', status: 'published' },
+    { id: 2, title: 'Draft', status: 'draft' }
+  ];
+
+  assert.deepEqual(getVisibleProducts(products), [{ id: 1, title: 'Published', status: 'published' }]);
 });
