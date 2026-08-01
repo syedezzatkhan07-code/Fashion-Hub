@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import aws4 from 'aws4';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath, pathToFileURL } from 'url';
+import { fileURLToPath } from 'url';
 import { createHash, randomBytes, randomUUID, scryptSync, timingSafeEqual } from 'crypto';
 
 dotenv.config();
@@ -25,7 +25,7 @@ const AMAZON_SECRET_KEY = process.env.AMAZON_SECRET_KEY;
 const AMAZON_PARTNER_TAG = process.env.AMAZON_PARTNER_TAG || 'your-partner-tag';
 const AMAZON_REGION = process.env.AMAZON_REGION || 'us-east-1';
 const PORT = process.env.PORT || 3001;
-const ADMIN_PORTAL_PATH = process.env.ADMIN_PORTAL_PATH || '/secret-admin-portal-8472';
+const ADMIN_PORTAL_PATH = process.env.ADMIN_PORTAL_PATH || '/shop/editorial';
 const PRODUCT_STORE_PATH = path.join(__dirname, 'data', 'products-store.json');
 const DEFAULT_PRODUCTS_PATH = path.join(projectRoot, 'data', 'products.json');
 const SESSION_TTL_MS = 8 * 60 * 60 * 1000;
@@ -501,7 +501,7 @@ app.get(ADMIN_PORTAL_PATH, (req, res) => {
   res.sendFile(path.join(projectRoot, 'admin.html'));
 });
 
-const isMainModule = process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url;
+const isMainModule = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 
 if (isMainModule) {
   app.listen(PORT, () => {
