@@ -144,13 +144,21 @@ function updateCountdown() {
 async function init() {
   initState();
   attachEvents();
-  products = await loadProducts(state.searchKeyword, state.searchCategory);
-  renderLists();
-  updateCountdown();
-  setInterval(updateCountdown, 60000);
-  setTimeout(() => {
-    loadingOverlay.classList.add('hidden');
-  }, 800);
+  document.querySelector('.page-shell')?.classList.add('is-loading');
+
+  try {
+    products = await loadProducts(state.searchKeyword, state.searchCategory);
+    renderLists();
+  } finally {
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        loadingOverlay?.classList.add('hidden');
+        document.querySelector('.page-shell')?.classList.remove('is-loading');
+      });
+    });
+  }
 }
 
 init();

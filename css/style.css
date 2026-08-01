@@ -135,7 +135,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   -webkit-backdrop-filter: blur(24px);
 }
 
-.page-shell { display: grid; gap: 1.4rem; padding-bottom: 2rem; }
+.page-shell { display: grid; gap: 1.4rem; padding-bottom: 2rem; opacity: 1; transition: opacity 220ms ease; }
+.page-shell.is-loading { opacity: 0; }
 .hero {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;

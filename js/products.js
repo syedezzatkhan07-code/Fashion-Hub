@@ -51,8 +51,15 @@ export async function loadProducts(keyword = 'fashion essentials', category = 'a
     return cachedProducts;
   }
 
+  const timeoutMs = 2200;
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), timeoutMs);
+
   try {
-    const response = await fetch(`${getApiBaseUrl()}/api/products?keyword=${encodeURIComponent(keyword)}&category=${encodeURIComponent(category)}`, { cache: 'no-store' });
+    const response = await fetch(`${getApiBaseUrl()}/api/products?keyword=${encodeURIComponent(keyword)}&category=${encodeURIComponent(category)}`, {
+      cache: 'no-store',
+      signal: controller.signal
+    });
     if (!response.ok) {
       throw new Error('Products could not be loaded');
     }
@@ -62,10 +69,14 @@ export async function loadProducts(keyword = 'fashion essentials', category = 'a
     cachedProducts = Object.assign(normalizedProducts, { keyword, category });
     return normalizedProducts;
   } catch (error) {
-    console.error(error);
+    if (error.name !== 'AbortError') {
+      console.error(error);
+    }
     const fallbackProducts = getFallbackProducts(keyword, category);
     cachedProducts = Object.assign(fallbackProducts, { keyword, category });
     return fallbackProducts;
+  } finally {
+    window.clearTimeout(timeoutId);
   }
 }
 

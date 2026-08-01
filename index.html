@@ -10,6 +10,7 @@
     <title>Fashion Hub | Premium Fashion Essentials</title>
     <link rel="canonical" href="https://fashionhub.com/" />
     <link rel="preload" href="css/style.min.css" as="style" />
+    <link rel="preload" href="assets/hero-illustration.svg" as="image" type="image/svg+xml" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <meta property="og:title" content="Fashion Hub | Premium Fashion Essentials" />
     <meta property="og:description" content="Discover premium fashion essentials at Fashion Hub, featuring curated outerwear, bags, accessories, and footwear with modern style and exclusive deals." />
@@ -101,7 +102,7 @@
 
         <div class="hero-visual" aria-hidden="true">
           <div class="hero-badge">Spring Edit 2026</div>
-          <img src="assets/hero-illustration.svg" alt="Curated fashion essentials" loading="lazy" decoding="async" />
+          <img src="assets/hero-illustration.svg" alt="Curated fashion essentials" loading="eager" decoding="async" fetchpriority="high" />
           <div class="hero-stack">
             <div class="mini-card">Minimal outerwear</div>
             <div class="mini-card accent">Signature bags</div>
@@ -121,7 +122,7 @@
         </div>
         <div class="hero-visual" aria-hidden="true">
           <div class="hero-badge">Quiet luxury</div>
-          <img src="assets/hero-illustration.svg" alt="Luxury fashion essentials" loading="lazy" decoding="async" />
+          <img src="assets/hero-illustration.svg" alt="Luxury fashion essentials" loading="eager" decoding="async" fetchpriority="high" />
           <div class="hero-stack">
             <div class="mini-card">Exclusive accessories</div>
             <div class="mini-card accent">Premium editorial picks</div>
